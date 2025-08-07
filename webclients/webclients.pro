@@ -14,14 +14,17 @@ SOURCES += \
     mainwindow.cpp \
     networkmanager.cpp \
     networkreader.cpp \
-    networkrequester.cpp
+    networkrequester.cpp \
+    notice.cpp
 
 HEADERS += \
+    clickablelabel.h \
     clientsearch.h \
     mainwindow.h \
     networkmanager.h \
     networkreader.h \
-    networkrequester.h
+    networkrequester.h \
+    notice.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

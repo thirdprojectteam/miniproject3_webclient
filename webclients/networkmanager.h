@@ -13,12 +13,13 @@ public:
         return inst;
     }
     QNetworkReply* get(const QUrl &url);
+    QNetworkReply* post(const QUrl &url, const QByteArray &data);
 
 signals:
 
 private:
     NetWorkManager() = default;
-    ~NetWorkManager();
+    ~NetWorkManager() = default;
     NetWorkManager(const NetWorkManager&) = delete;
     NetWorkManager& operator=(const NetWorkManager&) = delete;
     QNetworkAccessManager accessManager;

@@ -14,8 +14,9 @@ public:
 signals:
     void jsonArrayReady(QJsonArray jsonArray);
     void jsonObjectReady(QJsonObject jsonObject);
+    void jsonArrayAnnReady(QJsonArray jsonArray);
 
-private slots:
+public slots:
     void replyread(QNetworkReply*);
 };
 

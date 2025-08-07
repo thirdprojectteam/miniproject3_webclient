@@ -3,7 +3,11 @@
 
 #include <QMainWindow>
 
-#include "clientsearch.h"
+class NetWorkReader;
+class NetWorkRequester;
+class ClientSearch;
+class Notice;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,7 +20,18 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
-    ClientSearch *search;
+    Ui::MainWindow   *ui;
+    NetWorkRequester *request;
+    NetWorkReader    *reader;
+    ClientSearch     *search;
+    Notice           *notice;
+
+    //const QString CLIENTDB_URL = "http://127.0.0.1:8081/client/clientdb";
+
+private slots:
+    void PageChanged(int index);
+    void WorkLabelClicked();
+    void AnnouceLabelClicked();
+
 };
 #endif // MAINWINDOW_H

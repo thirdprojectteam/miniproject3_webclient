@@ -11,12 +11,17 @@ public:
     explicit NetWorkRequester(QObject *parent = nullptr);
 
     void RequestGet(const QUrl &url);
+    void RequestPost(const QUrl &url, const QByteArray &data);
 
 signals:
     void replyReady(QNetworkReply*);
+    void endPost();
+    void endAnnLog();
 
-private slots:
+public slots:
     void finished();
+    void popupFinishPost();
+    void popupAnnLogFinishPost();
 };
 
 #endif // NETWORKREQUESTER_H
