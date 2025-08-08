@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network charts websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,6 +12,7 @@ SOURCES += \
     clientsearch.cpp \
     main.cpp \
     mainwindow.cpp \
+    managepage.cpp \
     networkmanager.cpp \
     networkreader.cpp \
     networkrequester.cpp \
@@ -21,6 +22,7 @@ HEADERS += \
     clickablelabel.h \
     clientsearch.h \
     mainwindow.h \
+    managepage.h \
     networkmanager.h \
     networkreader.h \
     networkrequester.h \

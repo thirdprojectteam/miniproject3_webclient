@@ -19,14 +19,19 @@ void NetWorkReader::replyread(QNetworkReply *reply)
         if (doc.isObject()){
             if(url.toString().contains("clientdb"))
                 emit jsonObjectReady(doc.object());
+            else if(url.toString().contains("latest"))
+                emit latestObjectReady(doc.object());
         }
         else if (doc.isArray()) {
             if(url.toString().contains("clientdb"))
                 emit jsonArrayReady(doc.array());
             else if(url.toString().contains("announcedb"))
                 emit jsonArrayAnnReady(doc.array());
+            else if(url.toString().contains("atmlogdb"))
+                emit atmArrayReady(doc.array());
+            else if(url.toString().contains("announcelogdb"))
+                emit annlogArrayReady(doc.array());
         }
-
         //else                  emit parseError("Unknown JSON type");
     } else {
         qDebug() << "--- NetWorkReader Parsing FAIL!! ---";

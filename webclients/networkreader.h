@@ -12,9 +12,12 @@ public:
     explicit NetWorkReader(QObject *parent = nullptr);
 
 signals:
-    void jsonArrayReady(QJsonArray jsonArray);
-    void jsonObjectReady(QJsonObject jsonObject);
-    void jsonArrayAnnReady(QJsonArray jsonArray);
+    void jsonArrayReady(QJsonArray jsonArray);      //clientdb
+    void jsonObjectReady(QJsonObject jsonObject);   //clientdb
+    void jsonArrayAnnReady(QJsonArray jsonArray);   //announcedb
+    void latestObjectReady(QJsonObject jsonObject); //atmlogdb/latest
+    void atmArrayReady(QJsonArray jsonArray);       //atmlogdb
+    void annlogArrayReady(QJsonArray jsonArray);    //announcelogdb
 
 public slots:
     void replyread(QNetworkReply*);

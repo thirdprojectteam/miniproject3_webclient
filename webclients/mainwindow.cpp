@@ -5,6 +5,7 @@
 #include "clientsearch.h"
 #include "clickablelabel.h"
 #include "notice.h"
+#include "managepage.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     reader  = new NetWorkReader(this);
     search  = new ClientSearch(request, reader,ui->page);
     notice  = new Notice(request,reader,ui->page_2);
+    manage  = new ManagePage(request,reader,ui->page_3);
 
     // 초기 표시가 0번이면 즉시 한 번 실행
     ui->stackedWidget->setCurrentIndex(0);
@@ -27,10 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
     }
     auto workLabel     = qobject_cast<ClickableLabel*>(ui->work);
     auto announceLabel = qobject_cast<ClickableLabel*>(ui->announcement);
+    auto manageLabel   = qobject_cast<ClickableLabel*>(ui->management);
     connect(request, &NetWorkRequester::replyReady, reader, &NetWorkReader::replyread);
     connect(ui->stackedWidget, &QStackedWidget::currentChanged, this, &MainWindow::PageChanged);
     connect(workLabel, &ClickableLabel::clicked, this, &MainWindow::WorkLabelClicked);
     connect(announceLabel, &ClickableLabel::clicked, this, &MainWindow::AnnouceLabelClicked);
+    connect(manageLabel, &ClickableLabel::clicked, this, &MainWindow::MangeLabelClicked);
 }
 
 MainWindow::~MainWindow() {}
@@ -39,10 +43,19 @@ void MainWindow::PageChanged(int index)
 {
     switch (index) {
     case 0:
+        ui->page_3->setVisible(false);
+        manage->setActive(false);
         search->init();
         break;
     case 1:
+        ui->page_3->setVisible(false);
+        manage->setActive(false);
         notice->init();
+        break;
+    case 2:
+        ui->page_3->setVisible(true);
+        manage->setActive(true);
+        manage->init();
         break;
     default:
         break;
@@ -63,6 +76,14 @@ void MainWindow::AnnouceLabelClicked()
     ui->work_line->setVisible(false);
     ui->work_line_2->setVisible(true);
     ui->work_line_3->setVisible(false);
+}
+
+void MainWindow::MangeLabelClicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->work_line->setVisible(false);
+    ui->work_line_2->setVisible(false);
+    ui->work_line_3->setVisible(true);
 }
 
 
